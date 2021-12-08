@@ -118,6 +118,53 @@ mixin _$RegistrationVM on _RegistrationVMBase, Store {
     });
   }
 
+  final _$passingYearErrorAtom =
+      Atom(name: '_RegistrationVMBase.passingYearError');
+
+  @override
+  String? get passingYearError {
+    _$passingYearErrorAtom.reportRead();
+    return super.passingYearError;
+  }
+
+  @override
+  set passingYearError(String? value) {
+    _$passingYearErrorAtom.reportWrite(value, super.passingYearError, () {
+      super.passingYearError = value;
+    });
+  }
+
+  final _$gradeErrorAtom = Atom(name: '_RegistrationVMBase.gradeError');
+
+  @override
+  String? get gradeError {
+    _$gradeErrorAtom.reportRead();
+    return super.gradeError;
+  }
+
+  @override
+  set gradeError(String? value) {
+    _$gradeErrorAtom.reportWrite(value, super.gradeError, () {
+      super.gradeError = value;
+    });
+  }
+
+  final _$universityNameErrorAtom =
+      Atom(name: '_RegistrationVMBase.universityNameError');
+
+  @override
+  String? get universityNameError {
+    _$universityNameErrorAtom.reportRead();
+    return super.universityNameError;
+  }
+
+  @override
+  set universityNameError(String? value) {
+    _$universityNameErrorAtom.reportWrite(value, super.universityNameError, () {
+      super.universityNameError = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
@@ -127,7 +174,10 @@ phoneError: ${phoneError},
 emailError: ${emailError},
 passwordError: ${passwordError},
 confirmPasswordError: ${confirmPasswordError},
-educationSelectError: ${educationSelectError}
+educationSelectError: ${educationSelectError},
+passingYearError: ${passingYearError},
+gradeError: ${gradeError},
+universityNameError: ${universityNameError}
     ''';
   }
 }

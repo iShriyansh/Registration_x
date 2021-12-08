@@ -72,8 +72,6 @@ class Field extends StatelessWidget {
               ),
             ],
           )
-
-          
       ],
     );
   }
@@ -270,6 +268,101 @@ class NextButton extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
       ),
+    );
+  }
+}
+
+class DropDown extends StatefulWidget {
+  final List<String> education;
+  final String? error;
+  final Function(String value) onChanged;
+
+  DropDown(
+      {Key? key, required this.education, required this.onChanged, this.error})
+      : super(key: key);
+
+  @override
+  State<DropDown> createState() => _DropDownState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _DropDownState extends State<DropDown> {
+  String? dropdownValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: Color(0x33000000),
+              width: 0.5,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: DropdownButton<String>(
+              isExpanded: true,
+              value: dropdownValue,
+              icon: Icon(Icons.arrow_downward,
+                  color: Theme.of(context).indicatorColor),
+              iconSize: 20,
+              elevation: 16,
+              hint: Text(
+                'Select your education',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    ?.copyWith(color: Theme.of(context).indicatorColor),
+              ),
+              style: Theme.of(context).textTheme.headline3,
+              underline: Container(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+                widget.onChanged(newValue!);
+              },
+              items: widget.education
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        if (widget.error != null)
+          SizedBox(
+            height: AppTheme.margin,
+          ),
+        if (widget.error != null)
+          Row(
+            children: [
+              Icon(
+                Icons.error_outline,
+                size: 18,
+                color: Theme.of(context).errorColor,
+              ),
+              SizedBox(
+                width: AppTheme.margin * 0.75,
+              ),
+              Expanded(
+                child: Text(
+                  widget.error ?? "Error",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(color: Theme.of(context).errorColor),
+                ),
+              ),
+            ],
+          )
+      ],
     );
   }
 }

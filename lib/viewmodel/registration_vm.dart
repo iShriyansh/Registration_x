@@ -4,23 +4,24 @@ import 'package:mobx/mobx.dart';
 
 import 'package:registration_x/model/basic_info_impl.dart';
 import 'package:registration_x/viewmodel/model/education_info.dart';
+import 'package:registration_x/viewmodel/model/professional_info.dart';
 
 import 'model/basic_info.dart';
 
 part 'registration_vm.g.dart';
 
 class RegistrationVM extends _RegistrationVMBase with _$RegistrationVM {
-  RegistrationVM(BasicInfoModel basicInfoModel, EducationInfo educationInfo)
-      : super(basicInfoModel, educationInfo);
+  RegistrationVM(BasicInfoModel basicInfoModel, EducationInfo educationInfo,
+      ProfessionalInfo professionalInfo)
+      : super(basicInfoModel, educationInfo, professionalInfo);
 }
 
 abstract class _RegistrationVMBase with Store {
   final BasicInfoModel basicInfo;
   final EducationInfo educationInfo;
+  final ProfessionalInfo professionalInfo;
   _RegistrationVMBase(
-    this.basicInfo,
-    this.educationInfo,
-  );
+      this.basicInfo, this.educationInfo, this.professionalInfo);
   //!========== Basic Info Validation ============
 
   @observable
@@ -87,7 +88,29 @@ abstract class _RegistrationVMBase with Store {
   String? educationSelectError;
   @observable
   String? passingYearError;
+  @observable
+  String? gradeError;
+  @observable
+  String? universityNameError;
 
-  void validateEducationSelect(String education) =>
-      educationSelectError = basicInfo.validateYear(education);
+  void vaidatePassingYear(String passingYear) =>
+      passingYearError = educationInfo.validateYear(int.parse(passingYear));
+  void validateGrade(String grade) =>
+      gradeError = educationInfo.validateGrade(grade);
+  void validateUniversityName(String universityName) => universityNameError =
+      educationInfo.validateUniversityName(universityName);
+
+  @observable
+  String? yearsOfExperienceError;
+  @observable
+  String? designationError;
+  @observable
+  String? domainError;
+
+  void validateYearsOfExperience(String noOfYears) => yearsOfExperienceError =
+      professionalInfo.validateNoOfYearsOfExperience(noOfYears);
+  void validateDesignation(String designation) =>
+      designationError = professionalInfo.validateDesignation(designation);
+  void validateDomain(String domain) =>
+      domainError = professionalInfo.validateDomain(domain);
 }

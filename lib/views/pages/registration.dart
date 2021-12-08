@@ -14,7 +14,7 @@ import 'package:registration_x/Core/custom_type.dart';
 import 'package:registration_x/Core/enums.dart';
 import 'package:registration_x/model/basic_info_impl.dart';
 import 'package:registration_x/viewmodel/registration_vm.dart';
-import 'package:registration_x/views/pages/education_info_form.dart';
+import 'package:registration_x/views/pages/your_info_form.dart';
 
 import 'package:registration_x/views/style/themes.dart';
 import 'package:registration_x/views/widgets/custom_app_bar.dart';
@@ -245,7 +245,7 @@ class _RegistrationState extends State<Registration> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EducationInfoForm()));
+                            builder: (context) => YourInfoForm()));
                   }
                 }),
 
