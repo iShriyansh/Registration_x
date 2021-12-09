@@ -1,16 +1,25 @@
 # registration_x
 
-A new Flutter project.
 
-## Getting Started
+## Architecture - 
 
-This project is a starting point for a Flutter application.
+MVVM architecture is used in this project. View model works with Mobx state management tool in order to update the state of the UI.
+Viewmodel has some dependancies that are injected by dependancy injection library (get it) from the main method.
 
-A few resources to get you started if this is your first Flutter project:
+inside viewmodel/model, I have create contract for validation so that view model can be completely independent to other layers.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### State management - 
+Mobx state management is used in this project. Mobx_codegen and build_runner dev depandancies are used for code genration for mobx viewmodel/controllers.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### How to run project -
+
+- Open proejct
+- get depandancies - flutter pub get
+- run command  - flutter pub run build_runner build
+- flutter run
+
+
+
+
+

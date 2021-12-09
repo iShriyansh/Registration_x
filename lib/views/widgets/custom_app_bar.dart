@@ -5,7 +5,7 @@ import 'package:registration_x/views/style/themes.dart';
 AppBar customAppBar(BuildContext context,
         {Widget? iconWidget,
         String title = "Create Profile",
-        String trailing = "1/5"}) =>
+        String trailing = "1/3"}) =>
     AppBar(
       elevation: 1,
       automaticallyImplyLeading: true,

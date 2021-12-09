@@ -60,6 +60,20 @@ class _RegistrationState extends State<Registration> {
     _registrationVM = Provider.of<RegistrationVM>(context);
   }
 
+  void onNext() {
+    if (_registrationVM.validateAllFields(
+      firstName: _firstNameController.text,
+      lastName: _lastNameController.text,
+      phone: _phoneNumberController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+      confirmPassword: _confirmPasswordController.text,
+    )) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => YourInfoForm()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,6 +158,7 @@ class _RegistrationState extends State<Registration> {
                 Observer(builder: (_) {
                   return Field(
                     "First Name",
+                    autofocus: true,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
                     ],
@@ -241,12 +256,7 @@ class _RegistrationState extends State<Registration> {
                 ),
 
                 NextButton(onTap: () {
-                  if (_registrationVM.validateAllFields()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => YourInfoForm()));
-                  }
+                  onNext();
                 }),
 
                 SizedBox(

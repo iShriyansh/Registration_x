@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:registration_x/viewmodel/registration_vm.dart';
+import 'package:registration_x/views/pages/address_form.dart';
 import 'package:registration_x/views/style/themes.dart';
 import 'package:registration_x/views/widgets/common_widgets.dart';
 import 'package:registration_x/views/widgets/custom_app_bar.dart';
@@ -17,8 +18,7 @@ class YourInfoForm extends StatefulWidget {
 }
 
 class _YourInfoFormState extends State<YourInfoForm> {
-  String? educationLevel;
-
+  String? education;
   TextEditingController _yearOfPassingController = TextEditingController();
   TextEditingController _gradeController = TextEditingController();
   TextEditingController _universityNameController = TextEditingController();
@@ -36,7 +36,8 @@ class _YourInfoFormState extends State<YourInfoForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, iconWidget: null, title: 'Your Info'),
+      appBar: customAppBar(context,
+          iconWidget: null, title: 'Your Info', trailing: "2/3"),
       body: Container(
         margin: EdgeInsets.symmetric(
           horizontal: AppTheme.margin * 2,
@@ -67,7 +68,8 @@ class _YourInfoFormState extends State<YourInfoForm> {
                     "SSC",
                   ],
                   onChanged: (value) {
-                    educationLevel = value;
+                    education = value;
+                    _registrationVM.validateEducation(education);
                   },
                   error: _registrationVM.educationSelectError,
                 );
@@ -112,8 +114,7 @@ class _YourInfoFormState extends State<YourInfoForm> {
                   "Enter your University",
                   keyboardType: TextInputType.text,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ]")),
-                    LengthLimitingTextInputFormatter(2),
+                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ ]")),
                   ],
                   controller: _universityNameController,
                   onChange: _registrationVM.validateUniversityName,
@@ -151,7 +152,7 @@ class _YourInfoFormState extends State<YourInfoForm> {
                   "Enter your designation",
                   keyboardType: TextInputType.text,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ]")),
+                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ ]")),
                   ],
                   controller: _designationController,
                   onChange: _registrationVM.validateDesignation,
@@ -166,7 +167,7 @@ class _YourInfoFormState extends State<YourInfoForm> {
                   "Enter your Domain",
                   keyboardType: TextInputType.text,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ]")),
+                    FilteringTextInputFormatter.allow(RegExp("[0-9aA-zZ ]")),
                   ],
                   controller: _domainController,
                   onChange: _registrationVM.validateDomain,
@@ -182,7 +183,9 @@ class _YourInfoFormState extends State<YourInfoForm> {
                     child: Container(
                       height: 43,
                       child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: Text(
                             "Back",
                             style: TextStyle(
@@ -202,7 +205,28 @@ class _YourInfoFormState extends State<YourInfoForm> {
                         style: TextStyle(color: Colors.white),
                       ),
                       color: CupertinoColors.activeBlue,
-                      onPressed: () {},
+                      onPressed: () {
+                        bool proValid =
+                            _registrationVM.validateAllProfessionalFields(
+                          experience: _yearsOfExperienceController.text,
+                          designation: _designationController.text,
+                          domain: _domainController.text,
+                        );
+                        bool eduValid =
+                            _registrationVM.validateAllEducationFields(
+                          education: education,
+                          passingYear: _yearOfPassingController.text,
+                          grade: _gradeController.text,
+                          universityName: _universityNameController.text,
+                        );
+
+                        if (proValid && eduValid) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddressForm()));
+                        }
+                      },
                     ),
                   )
                 ],

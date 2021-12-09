@@ -165,6 +165,129 @@ mixin _$RegistrationVM on _RegistrationVMBase, Store {
     });
   }
 
+  final _$yearsOfExperienceErrorAtom =
+      Atom(name: '_RegistrationVMBase.yearsOfExperienceError');
+
+  @override
+  String? get yearsOfExperienceError {
+    _$yearsOfExperienceErrorAtom.reportRead();
+    return super.yearsOfExperienceError;
+  }
+
+  @override
+  set yearsOfExperienceError(String? value) {
+    _$yearsOfExperienceErrorAtom
+        .reportWrite(value, super.yearsOfExperienceError, () {
+      super.yearsOfExperienceError = value;
+    });
+  }
+
+  final _$designationErrorAtom =
+      Atom(name: '_RegistrationVMBase.designationError');
+
+  @override
+  String? get designationError {
+    _$designationErrorAtom.reportRead();
+    return super.designationError;
+  }
+
+  @override
+  set designationError(String? value) {
+    _$designationErrorAtom.reportWrite(value, super.designationError, () {
+      super.designationError = value;
+    });
+  }
+
+  final _$domainErrorAtom = Atom(name: '_RegistrationVMBase.domainError');
+
+  @override
+  String? get domainError {
+    _$domainErrorAtom.reportRead();
+    return super.domainError;
+  }
+
+  @override
+  set domainError(String? value) {
+    _$domainErrorAtom.reportWrite(value, super.domainError, () {
+      super.domainError = value;
+    });
+  }
+
+  final _$addressErrorAtom = Atom(name: '_RegistrationVMBase.addressError');
+
+  @override
+  String? get addressError {
+    _$addressErrorAtom.reportRead();
+    return super.addressError;
+  }
+
+  @override
+  set addressError(String? value) {
+    _$addressErrorAtom.reportWrite(value, super.addressError, () {
+      super.addressError = value;
+    });
+  }
+
+  final _$cityErrorAtom = Atom(name: '_RegistrationVMBase.cityError');
+
+  @override
+  String? get cityError {
+    _$cityErrorAtom.reportRead();
+    return super.cityError;
+  }
+
+  @override
+  set cityError(String? value) {
+    _$cityErrorAtom.reportWrite(value, super.cityError, () {
+      super.cityError = value;
+    });
+  }
+
+  final _$stateErrorAtom = Atom(name: '_RegistrationVMBase.stateError');
+
+  @override
+  String? get stateError {
+    _$stateErrorAtom.reportRead();
+    return super.stateError;
+  }
+
+  @override
+  set stateError(String? value) {
+    _$stateErrorAtom.reportWrite(value, super.stateError, () {
+      super.stateError = value;
+    });
+  }
+
+  final _$landmarkErrorAtom = Atom(name: '_RegistrationVMBase.landmarkError');
+
+  @override
+  String? get landmarkError {
+    _$landmarkErrorAtom.reportRead();
+    return super.landmarkError;
+  }
+
+  @override
+  set landmarkError(String? value) {
+    _$landmarkErrorAtom.reportWrite(value, super.landmarkError, () {
+      super.landmarkError = value;
+    });
+  }
+
+  final _$pinCodeErrorAtom = Atom(name: '_RegistrationVMBase.pinCodeError');
+
+  @override
+  String? get pinCodeError {
+    _$pinCodeErrorAtom.reportRead();
+    return super.pinCodeError;
+  }
+
+  @override
+  set pinCodeError(String? value) {
+    _$pinCodeErrorAtom.reportWrite(value, super.pinCodeError, () {
+      super.pinCodeError = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
@@ -177,7 +300,15 @@ confirmPasswordError: ${confirmPasswordError},
 educationSelectError: ${educationSelectError},
 passingYearError: ${passingYearError},
 gradeError: ${gradeError},
-universityNameError: ${universityNameError}
+universityNameError: ${universityNameError},
+yearsOfExperienceError: ${yearsOfExperienceError},
+designationError: ${designationError},
+domainError: ${domainError},
+addressError: ${addressError},
+cityError: ${cityError},
+stateError: ${stateError},
+landmarkError: ${landmarkError},
+pinCodeError: ${pinCodeError}
     ''';
   }
 }

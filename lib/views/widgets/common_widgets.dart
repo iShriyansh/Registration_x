@@ -10,6 +10,7 @@ import '../style/themes.dart';
 class Field extends StatelessWidget {
   final String label;
   final String? error;
+  final bool autofocus;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType keyboardType;
@@ -18,6 +19,7 @@ class Field extends StatelessWidget {
   Field(this.label,
       {this.error,
       this.controller,
+      this.autofocus = false,
       required this.onChange,
       this.inputFormatters,
       this.keyboardType = TextInputType.text});
@@ -31,6 +33,7 @@ class Field extends StatelessWidget {
           child: CupertinoTextField(
             onChanged: onChange,
             keyboardType: keyboardType,
+            autofocus: autofocus ,
             inputFormatters: inputFormatters,
             controller: controller ?? TextEditingController(),
             cursorColor: Theme.of(context).cursorColor,
@@ -274,11 +277,16 @@ class NextButton extends StatelessWidget {
 
 class DropDown extends StatefulWidget {
   final List<String> education;
+  final String placeholder;
   final String? error;
   final Function(String value) onChanged;
 
   DropDown(
-      {Key? key, required this.education, required this.onChanged, this.error})
+      {Key? key,
+      required this.education,
+      required this.onChanged,
+      this.placeholder = "",
+      this.error})
       : super(key: key);
 
   @override
@@ -294,12 +302,14 @@ class _DropDownState extends State<DropDown> {
     return Column(
       children: [
         Container(
-          height: 45,
+          height: 42,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: Color(0x33000000),
-              width: 0.5,
+              color: widget.error != null
+                  ? Theme.of(context).errorColor
+                  : Color(0x33000000),
+              width: 1.2,
             ),
           ),
           child: Padding(
@@ -310,9 +320,9 @@ class _DropDownState extends State<DropDown> {
               icon: Icon(Icons.arrow_downward,
                   color: Theme.of(context).indicatorColor),
               iconSize: 20,
-              elevation: 16,
+              elevation: 8,
               hint: Text(
-                'Select your education',
+                widget.placeholder,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2

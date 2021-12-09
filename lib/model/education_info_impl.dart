@@ -1,12 +1,17 @@
 import 'package:registration_x/viewmodel/model/education_info.dart';
 
-class EducationInfoImpl extends EducationInfo {
+class EducationInfoImpl implements EducationInfo {
   @override
-  String? validateYear(int year, {int min = 1900}) {
-    if (year < min || year > DateTime.now().year) {
+  String? validateYear(String year, {int min = 1900}) {
+    try {
+      int yearInt = int.parse(year);
+      if (yearInt < min || yearInt > DateTime.now().year) {
+        return 'Please enter a valid year';
+      } else {
+        return null;
+      }
+    } catch (e) {
       return 'Please enter a valid year';
-    } else {
-      return null;
     }
   }
 
@@ -35,5 +40,13 @@ class EducationInfoImpl extends EducationInfo {
     } else {
       return null;
     }
+  }
+
+  @override
+  String? validateEducationInfo(String? educationInfo) {
+    if (educationInfo == null) {
+      return 'Please selcted education';
+    }
+    return null;
   }
 }
