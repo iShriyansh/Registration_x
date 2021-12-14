@@ -33,7 +33,7 @@ class Field extends StatelessWidget {
           child: CupertinoTextField(
             onChanged: onChange,
             keyboardType: keyboardType,
-            autofocus: autofocus ,
+            autofocus: autofocus,
             inputFormatters: inputFormatters,
             controller: controller ?? TextEditingController(),
             cursorColor: Theme.of(context).cursorColor,
@@ -183,7 +183,7 @@ class _PasswordFieldState extends State<PasswordField> {
           child: CupertinoTextField(
             onChanged: widget.onChange,
             keyboardType: widget.keyboardType,
-            obscureText: showPassword,
+            obscureText: !showPassword,
             suffix: widget.controller?.text.length != 0
                 ? IconButton(
                     splashRadius: 20,

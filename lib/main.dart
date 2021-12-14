@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Registration X',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: AddressForm(),
-      // home: YourInfoForm(),
-      // home: Registration()
-    );
+        title: 'Registration X',
+        theme: AppTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
+        // home: AddressForm(),
+        // home: YourInfoForm(),
+        home: Registration());
   }
 }
